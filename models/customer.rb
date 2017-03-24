@@ -1,6 +1,6 @@
 require_relative("../db/sql_runner")
 
-class customer
+class Customer
 
   attr_reader :id
   attr_accessor :name, :funds

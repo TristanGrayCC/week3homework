@@ -1,4 +1,4 @@
-equire('pg')
+require('pg')
 
 class SqlRunner
 

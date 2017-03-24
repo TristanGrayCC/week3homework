@@ -1,6 +1,6 @@
 require_relative("../db/sql_runner")
 
-class film
+class Film
 
   attr_reader :id
   attr_accessor :title, :price
