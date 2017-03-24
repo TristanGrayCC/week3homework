@@ -48,4 +48,14 @@ class Customer
     return result
   end
 
+  def self.find_by_name(name)
+    sql = "SELECT * FROM customers WHERE name = '#{name}'"
+    return Film.map_items(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM customers WHERE id = #{id}"
+    return Film.map_items(sql)
+  end
+
 end

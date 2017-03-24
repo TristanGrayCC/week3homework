@@ -48,4 +48,14 @@ class Film
     return result
   end
 
+  def self.find_by_title(title)
+    sql = "SELECT * FROM films WHERE title = '#{title}'"
+    return Film.map_items(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM films WHERE id = #{id}"
+    return Film.map_items(sql)
+  end
+
 end
