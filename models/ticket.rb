@@ -1,5 +1,7 @@
 require_relative("../db/sql_runner")
 
+require('pry')
+
 class Ticket
 
   attr_reader :id
@@ -14,20 +16,27 @@ class Ticket
   def film()
     sql = "SELECT * FROM films where id = #{@film_id}"
     film = SqlRunner.run(sql).first
-    return film.new(film)
+    return Film.new(film)
   end
 
   def customer()
     sql = "SELECT * FROM customers where id = #{@customer_id}"
     customer = SqlRunner.run(sql).first
-    return customer.new(customer)
+    return Customer.new(customer)
   end
 
-  def save()
+  def buy(customer)
     sql = "INSERT INTO tickets (customer_id, film_id)
            VALUES (#{@customer_id}, #{@film_id}) RETURNING id"
     ticket = SqlRunner.run(sql).first
     @id = ticket['id'].to_i
+    film = Film.find_by_id(@film_id)
+    price = film.first.price.to_i
+    customer_funds = Customer.find_by_id(@customer_id).first.funds
+    customer_funds -= price
+    binding.pry
+    customer.funds = customer_funds
+    customer.update()
   end
 
   def delete
