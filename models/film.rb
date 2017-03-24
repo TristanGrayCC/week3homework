@@ -58,4 +58,10 @@ class Film
     return Film.map_items(sql)
   end
 
+  def tickets_sold
+    sql = "SELECT films.* FROM films INNER JOIN tickets ON tickets.film_id = films.id WHERE tickets.customer_id = #{@id}"
+    return Customer.map_items(sql).count
+  end
+
+
 end

@@ -34,7 +34,6 @@ class Ticket
     price = film.first.price.to_i
     customer_funds = Customer.find_by_id(@customer_id).first.funds
     customer_funds -= price
-    binding.pry
     customer.funds = customer_funds
     customer.update()
   end
